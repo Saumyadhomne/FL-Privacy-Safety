@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{% block title %}Federated Industrial AI{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<aside class="sidebar">
+  <a class="brand" href="{{ url_for('dashboard') }}"><span class="brand-mark">⌁</span><span>Forge<span class="brand-light">FL</span><small>INDUSTRIAL INTELLIGENCE</small></span></a>
+  <div class="nav-caption">WORKSPACE</div>
+  <nav>
+    {% for endpoint, label, icon in [('dashboard','Dashboard','◫'),('upload','Upload Data','⇧'),('train','Train Model','◈'),('updates','Updates','⟳'),('analytics','Analytics','▥'),('reports','Reports','▤'),('settings','Settings','⚙')] %}
+    <a class="nav-link {{ 'active' if active == endpoint else '' }}" href="{{ url_for(endpoint) }}"><span class="nav-icon">{{ icon }}</span>{{ label }}{% if endpoint == 'updates' %}<span class="nav-dot"></span>{% endif %}</a>
+    {% endfor %}
+  </nav>
+  <div class="sidebar-bottom"><div class="privacy-card"><span class="privacy-icon">✓</span><div><b>Privacy protected</b><small>Data stays on-site</small></div></div><div class="profile"><div class="avatar">FO</div><div><b>Factory Ops</b><small>Administrator</small></div><span class="profile-menu">···</span></div></div>
+</aside>
+<main class="main-area"><header class="topbar"><div class="crumb">Workspace <span>/</span> <b>{% block crumb %}Dashboard{% endblock %}</b></div><div class="top-actions"><span class="system-status"><i></i> All systems operational</span><button class="icon-button" aria-label="Notifications">♧<em></em></button><div class="avatar small-avatar">FO</div></div></header>
+<section class="page-content">{% with messages = get_flashed_messages(with_categories=true) %}{% if messages %}<div class="flash-stack">{% for category,message in messages %}<div class="flash {{ category }}">{{ message }}</div>{% endfor %}</div>{% endif %}{% endwith %}{% block content %}{% endblock %}</section>
+<footer class="footer">© {{ year }} ForgeFL <span>Federated intelligence, built for industry.</span></footer></main>
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>{% block scripts %}{% endblock %}
+</body></html>

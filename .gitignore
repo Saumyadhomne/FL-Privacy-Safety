@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+data/uploads/*
+!data/uploads/.gitkeep
+models/*
+!models/.gitkeep
+instance/
+.env

@@ -1,0 +1,22 @@
+{
+  "models": 12,
+  "updates": 11,
+  "accuracy": 95,
+  "predictions": {
+    "Normal": 68,
+    "Warning": 22,
+    "Critical": 10
+  },
+  "history": [
+    85,
+    90,
+    93,
+    94,
+    95
+  ],
+  "events": [
+    "Federated training round 11 completed",
+    "Federated training round 10 completed",
+    "Federated training round 9 completed"
+  ]
+}
